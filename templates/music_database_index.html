@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Releases</title>
+    <style>
+
+        ul.hr {
+            margin: 0;
+            padding: 4px;
+        }
+
+        ul.hr li {
+            display: inline;
+            margin-right: 5px;
+            border: 1px solid #000;
+            padding: 3px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Releases</h1>
+<p>find release:</p>
+<form action="{% url 'search_results' %}" method="get">
+    <input name="q" type="text" placeholder="Search...">
+</form>
+<h2>Last Added Releases:</h2>
+<ul class="hr">
+    {% for release in object_list %}
+        <li>
+            <a href="{% url 'release_details' release.pk %}">{{ release.name }}
+                {{ release.year|default_if_none:'' }}</a>
+        </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
